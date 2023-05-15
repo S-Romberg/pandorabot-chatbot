@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>*</pattern>
+    <template>
+      Either you just started talking to me or I didn't understand your previous response.
+        To continue deciding on a possible career path in computer science, please choose the option that sounds the most appealing to you
+      <br />
+      - Spending most of your time in a code editor
+      <br />
+      - Spending most of your time in a browser
+      <br />
+      - Switching back and forth
+    </template>
+  </category>
+  <!-- Code editor response start-->
+  <category>
+    <pattern>code editor</pattern>
+    <template>
+      <think>
+        <set name="topic">security</set>
+      </think>
+      Do you like security? Would spending time trying to hack into something, or trying to lock something down interest you? Please answer with yes or no.
+    </template>
+  </category>
+  <category>
+    <pattern>_ code editor</pattern>
+    <template>
+      <srai>code editor</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>code editor _</pattern>
+    <template>
+      <srai>code editor</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>_ code editor *</pattern>
+    <template>
+      <srai>code editor</srai>
+    </template>
+  </category>
+  <topic name="security">
+    <category>
+      <pattern>*</pattern>
+      <template>
+        <think>
+          <set name="security">
+            <star />
+          </set>
+        </think>
+        <condition name="security">
+          <li value="yes">Your skillset aligns well with security development. Learn more here(link)</li>
+          <li value="no">
+            <think>
+              <set name="topic">backend</set>
+            </think>
+            Are you interested in solving logic problems, and programming in order to get tests to pass?
+          </li>
+          <li value="restart">
+            <think>
+              <set name="topic" />
+            </think>
+          </li>
+          <li>I don't understand, please input yes or no. You may input restart if you'd like to start over</li>
+        </condition>
+      </template>
+    </category>
+  </topic>
+  <topic name="backend">
+    <category>
+      <pattern>*</pattern>
+      <template>
+        <think>
+          <set name="backend">
+            <star />
+          </set>
+        </think>
+        <condition name="backend">
+          <li value="yes">Your skillset aligns well with backend development. Learn more here(link)</li>
+          <li value="no">
+            <think>
+              <set name="topic">backend</set>
+            </think>
+            It seems like you may be a good fit for backend or security development. Look into either of these options to learn more!
+          </li>
+          <li value="restart">
+            <think>
+              <set name="topic" />
+            </think>
+          </li>
+          <li>I don't understand, please input yes or no. You may input restart if you'd like to start over</li>
+        </condition>
+      </template>
+    </category>
+  </topic>
+  <!-- Code editor response end-->
+  <!-- Browser response start-->
+  <category>
+    <pattern>browser</pattern>
+    <template>
+      <think>
+        <set name="topic">frontend</set>
+      </think>
+      Does the design of certain websites stand out to you? Do you have a knack for visual details? Please answer with yes or no.
+    </template>
+  </category>
+  <category>
+    <pattern>_ browser</pattern>
+    <template>
+      <srai>browser</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>browser _</pattern>
+    <template>
+      <srai>browser</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>_ browser *</pattern>
+    <template>
+      <srai>browser</srai>
+    </template>
+  </category>
+  <topic name="frontend">
+    <category>
+      <pattern>*</pattern>
+      <template>
+        <think>
+          <set name="frontend">
+            <star />
+          </set>
+        </think>
+        <condition name="frontend">
+          <li value="yes">Your skillset aligns well with frontend development. Learn more here(link)</li>
+          <li value="no">
+            <think>
+              <set name="topic">cloud</set>
+            </think>
+            Are you interested in how networks work, or how computer programs scale?
+          </li>
+          <li value="restart">
+            <think>
+              <set name="topic" />
+            </think>
+          </li>
+          <li>I don't understand, please input yes or no. You may input restart if you'd like to start over</li>
+        </condition>
+      </template>
+    </category>
+  </topic>
+  <topic name="cloud">
+    <category>
+      <pattern>*</pattern>
+      <template>
+        <think>
+          <set name="cloud">
+            <star />
+          </set>
+        </think>
+        <condition name="cloud">
+          <li value="yes">Your skillset aligns well with cloud development. Learn more here(link)</li>
+          <li value="no">Based on your preference for browsers, you would do well in front end or cloud development.</li>
+          <li value="restart">
+            <think>
+              <set name="topic" />
+            </think>
+          </li>
+          <li>I don't understand, please input yes or no. You may input restart if you'd like to start over</li>
+        </condition>
+      </template>
+    </category>
+  </topic>
+  <!-- Browser response end-->
+  <!-- Back and forth response start-->
+  <category>
+    <pattern>back and forth</pattern>
+    <template>It sounds like you'd be a good fit for full stack development! Learn more here (link)</template>
+  </category>
+  <category>
+    <pattern>_ switching</pattern>
+    <template>
+      <srai>back and forth</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>switching _</pattern>
+    <template>
+      <srai>back and forth</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>_ switching *</pattern>
+    <template>
+      <srai>back and forth</srai>
+    </template>
+  </category>
+  <!-- Back and forth response end-->
+</aiml>
