@@ -3,16 +3,17 @@
   <category>
     <pattern>*</pattern>
     <template>
-      Either you just started talking to me or I didn't understand your previous response.
-        To continue deciding on a possible career path in computer science, please choose the option that sounds the most appealing to you
+      Either we just start talking, or I didn't understand your previous response! <br />
+      To decide on a possible career path in computing, please choose the option that sounds the most appealing to you
       <br />
-      - Spending most of your time in a code editor
+      1. Spending most of your time in a code editor
       <br />
-      - Spending most of your time in a browser
+      2. Spending most of your time in a browser
       <br />
-      - Switching back and forth
+      3. Switching back and forth
     </template>
   </category>
+  
   <!-- Code editor response start-->
   <category>
     <pattern>code editor</pattern>
@@ -41,6 +42,12 @@
       <srai>code editor</srai>
     </template>
   </category>
+  <category>
+    <pattern>2</pattern>
+    <template>
+      <srai>code editor</srai>
+    </template>
+  </category>
   <topic name="security">
     <category>
       <pattern>*</pattern>
@@ -51,7 +58,7 @@
           </set>
         </think>
         <condition name="security">
-          <li value="yes">Your skillset aligns well with security development. Learn more here(link)</li>
+          <li value="yes">Your skillset aligns well with security development.</li>
           <li value="no">
             <think>
               <set name="topic">backend</set>
@@ -78,7 +85,7 @@
           </set>
         </think>
         <condition name="backend">
-          <li value="yes">Your skillset aligns well with backend development. Learn more here(link)</li>
+          <li value="yes">Your skillset aligns well with backend development.</li>
           <li value="no">
             <think>
               <set name="topic">backend</set>
@@ -96,6 +103,7 @@
     </category>
   </topic>
   <!-- Code editor response end-->
+  
   <!-- Browser response start-->
   <category>
     <pattern>browser</pattern>
@@ -124,6 +132,12 @@
       <srai>browser</srai>
     </template>
   </category>
+  <category>
+    <pattern>1</pattern>
+    <template>
+      <srai>browser</srai>
+    </template>
+  </category>
   <topic name="frontend">
     <category>
       <pattern>*</pattern>
@@ -134,7 +148,7 @@
           </set>
         </think>
         <condition name="frontend">
-          <li value="yes">Your skillset aligns well with frontend development. Learn more here(link)</li>
+          <li value="yes">Your skillset aligns well with frontend development.</li>
           <li value="no">
             <think>
               <set name="topic">cloud</set>
@@ -161,7 +175,7 @@
           </set>
         </think>
         <condition name="cloud">
-          <li value="yes">Your skillset aligns well with cloud development. Learn more here(link)</li>
+          <li value="yes">Your skillset aligns well with cloud development.</li>
           <li value="no">Based on your preference for browsers, you would do well in front end or cloud development.</li>
           <li value="restart">
             <think>
@@ -174,10 +188,22 @@
     </category>
   </topic>
   <!-- Browser response end-->
+  
   <!-- Back and forth response start-->
   <category>
     <pattern>back and forth</pattern>
-    <template>It sounds like you'd be a good fit for full stack development! Learn more here (link)</template>
+    <template>
+      <think>
+        <set name="topic">frontend</set>
+      </think>
+      Does the design of certain websites stand out to you? Do you have a knack for visual details? Please answer with yes or no.
+    </template>
+  </category>
+  <category>
+    <pattern>switching</pattern>
+    <template>
+      <srai>back and forth</srai>
+    </template>
   </category>
   <category>
     <pattern>_ switching</pattern>
@@ -197,5 +223,34 @@
       <srai>back and forth</srai>
     </template>
   </category>
+  <category>
+    <pattern>3</pattern>
+    <template>
+      <srai>back and forth</srai>
+    </template>
+  </category>
+  
+  <topic name="full stack">
+    <category>
+      <pattern>*</pattern>
+      <template>
+        <think>
+          <set name="full stack">
+            <star />
+          </set>
+        </think>
+        <condition name="frontend">
+          <li value="yes">Your skillset aligns well with front end development</li>
+          <li value="no">It sounds like you'd be a good fit for full stack development!</li>
+          <li value="restart">
+            <think>
+              <set name="topic" />
+            </think>
+          </li>
+          <li>I don't understand, please input yes or no. You may input restart if you'd like to start over</li>
+        </condition>
+      </template>
+    </category>
+  </topic>
   <!-- Back and forth response end-->
 </aiml>
